@@ -87,6 +87,14 @@ export class BillingFormPage {
 
   async discardBill() {
     await this.discardButton().click();
+
+    // If the workspace has unsaved changes, a confirmation modal appears.
+    // Click the modal's "Discard changes" button to confirm.
+    const modal = this.page.getByRole('dialog');
+    const confirmDiscardButton = modal.getByRole('button', { name: /discard changes/i });
+    if (await confirmDiscardButton.isVisible({ timeout: 2000 }).catch(() => false)) {
+      await confirmDiscardButton.click();
+    }
   }
 
   async verifyItemAdded(itemName: string) {
