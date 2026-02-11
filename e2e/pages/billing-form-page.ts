@@ -10,7 +10,7 @@ export class BillingFormPage {
   readonly selectedItemCards = () => this.page.locator('[class*="itemCard"]');
   readonly removeItemButton = () => this.page.getByRole('button', { name: /remove/i });
   readonly saveButton = () => this.page.getByRole('button', { name: /save and close/i });
-  readonly discardButton = () => this.page.getByRole('button', { name: /discard/i });
+  readonly discardButton = () => this.page.getByRole('button', { name: 'Discard', exact: true });
   readonly grandTotalLabel = () => this.page.getByText(/grand total/i);
 
   async openBillingForm(patientUuid: string) {
