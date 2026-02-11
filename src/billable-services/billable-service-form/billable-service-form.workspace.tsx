@@ -199,7 +199,7 @@ const BillableServiceFormWorkspace: React.FC<Workspace2DefinitionProps<BillableS
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     setValue,
     reset,
   } = useForm<BillableServiceFormData>({
@@ -300,7 +300,7 @@ const BillableServiceFormWorkspace: React.FC<Workspace2DefinitionProps<BillableS
 
   if (isLoadingPaymentModes || isLoadingServiceTypes) {
     return (
-      <Workspace2 title={title}>
+      <Workspace2 title={title} hasUnsavedChanges={isDirty}>
         <InlineLoading
           status="active"
           iconDescription={t('loadingDescription', 'Loading')}
@@ -311,7 +311,7 @@ const BillableServiceFormWorkspace: React.FC<Workspace2DefinitionProps<BillableS
   }
 
   return (
-    <Workspace2 title={title}>
+    <Workspace2 title={title} hasUnsavedChanges={isDirty}>
       <Form
         aria-label={t('billableServiceForm', 'Billable service form')}
         className={styles.form}
